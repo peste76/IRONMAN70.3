@@ -1,16 +1,16 @@
-import type React from "react"
+import type { Metadata } from "next"
 import "@/app/globals.css"
 import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
-import { Toaster } from "@/components/toaster"
+import { Toaster } from "@/components/ui/toaster"
 import { WorkoutProvider } from "@/components/workout-provider"
+import { CoachChat } from "@/components/coach-chat"
 
 const inter = Inter({ subsets: ["latin"] })
 
-export const metadata = {
-  title: "Ironman 70.3 Trainer",
-  description: "App per la preparazione all'Ironman 70.3",
-    generator: 'v0.dev'
+export const metadata: Metadata = {
+  title: "Ironman Training",
+  description: "Your personal Ironman training companion",
 }
 
 export default function RootLayout({
@@ -19,10 +19,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="it" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <WorkoutProvider>{children}</WorkoutProvider>
+          <CoachChat />
           <Toaster />
         </ThemeProvider>
       </body>
